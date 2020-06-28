@@ -8,8 +8,8 @@ square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', 
 unitlist = row_units + column_units + square_units
 
 # TODO: Update the unit list to add the new diagonal units
-main_diagonal_units = [f'{rows[idx]}{cols[idx]}' for idx, val in enumerate(cols)]
-reversed_diagonal_units = [f'{rows[8 - idx]}{cols[idx]}' for idx, val in enumerate(cols)]
+main_diagonal_units = [rows[idx] + cols[idx] for idx in range(0, 9)]
+reversed_diagonal_units = [rows[8 - idx] + cols[idx] for idx in range(0, 9)]
 unitlist = unitlist + [main_diagonal_units] + [reversed_diagonal_units]
 
 # Must be called after all units (including diagonals) are added to the unitlist
