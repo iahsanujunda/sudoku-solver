@@ -42,12 +42,15 @@ python solution.py
 We use several contraints to solve this puzzle,
 
 - elimination contraint
+
 When a box has been assigned a digit, then all peers of this box can't have the same digit.
 
 - only choice constraint
+
 When only one box in a unit allows a certain digit, then that box must be assigned that digit.
 
 - naked twins contraint
+
 When two or more unallocated boxes in a unit has the same two digit option that can be assigned to them, then these two digits can be eliminated from the assignment of all other boxes in the same unit
 
 ### 2. Depth-first search
