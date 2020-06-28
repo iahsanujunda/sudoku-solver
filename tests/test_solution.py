@@ -4,7 +4,7 @@ many additional test cases that you must also pass to complete the project. You 
 own additional test cases to cover any failed tests shown in the Project Assistant feedback.
 """
 import unittest
-import solver
+import utils
 
 
 class TestNakedTwins(unittest.TestCase):
@@ -73,11 +73,11 @@ class TestNakedTwins(unittest.TestCase):
     ]
 
     def test_naked_twins(self):
-        self.assertTrue(solver.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
+        self.assertTrue(utils.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
                         "Your naked_twins function produced an unexpected board.")
 
     def test_naked_twins2(self):
-        self.assertTrue(solver.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
+        self.assertTrue(utils.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
                         "Your naked_twins function produced an unexpected board.")
 
 
@@ -96,7 +96,14 @@ class TestDiagonalSudoku(unittest.TestCase):
                           'D1': '5'}
 
     def test_solve(self):
-        self.assertEqual(solver.solve(self.diagonal_grid), self.solved_diag_sudoku)
+        self.assertEqual(utils.solve(self.diagonal_grid), self.solved_diag_sudoku)
+
+
+class TestAgentExecution(unittest.TestCase):
+    diagonal_grid = '1............62....1....7...6..8...3...9...7...6..4...4....8....52...........3'
+
+    def test_grid_length(self):
+        self.assertRaises(AssertionError, utils.grid2values, self.diagonal_grid)
 
 
 if __name__ == '__main__':
