@@ -1,8 +1,9 @@
-import sys, os, random, pygame
+import sys, os
+
 sys.path.append(os.path.join("objects"))
-import SudokuSquare
+from objects.SudokuSquare import SudokuSquare
 from utils import *
-from GameResources import *
+from objects.GameResources import *
 
 
 def play(values, result, history):
@@ -19,24 +20,29 @@ def play(values, result, history):
     while True:
         pygame.event.pump()
         theSquares = []
-        initXLoc = 0
-        initYLoc = 0
         startX, startY, editable, number = 0, 0, "N", 0
         for y in range(9):
             for x in range(9):
-                if x in (0, 1, 2):  startX = (x * 57) + 38
-                if x in (3, 4, 5):  startX = (x * 57) + 99
-                if x in (6, 7, 8):  startX = (x * 57) + 159
+                if x in (0, 1, 2):
+                    startX = (x * 57) + 38
+                if x in (3, 4, 5):
+                    startX = (x * 57) + 99
+                if x in (6, 7, 8):
+                    startX = (x * 57) + 159
 
-                if y in (0, 1, 2):  startY = (y * 57) + 35
-                if y in (3, 4, 5):  startY = (y * 57) + 100
-                if y in (6, 7, 8):  startY = (y * 57) + 165
+                if y in (0, 1, 2):
+                    startY = (y * 57) + 35
+                if y in (3, 4, 5):
+                    startY = (y * 57) + 100
+                if y in (6, 7, 8):
+                    startY = (y * 57) + 165
+
                 string_number = values[rows[y] + cols[x]]
                 if len(string_number) > 1 or string_number == '' or string_number == '.':
                     number = None
                 else:
                     number = int(string_number)
-                theSquares.append(SudokuSquare.SudokuSquare(number, startX, startY, editable, x, y))
+                theSquares.append(SudokuSquare(number, startX, startY, editable, x, y))
 
         screen.blit(background_image, (0, 0))
         for num in theSquares:

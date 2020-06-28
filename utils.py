@@ -160,7 +160,7 @@ def display(values):
     print()
 
 
-def reconstruct(values, history):
+def reconstruct(values, history) -> list:
     """Returns the solution as a sequence of value assignments 
 
     Parameters
