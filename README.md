@@ -59,6 +59,6 @@ Depth-first search is used when our agent is faced with two or more possible out
 
 ## Visualization
 
-**Note:** The `pygame` library is required to visualize your solution -- we have include it with the `aind` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
+**Note:** The `pygame` library is required to run visualization -- we have include it with the `aind` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
 
 Running `python solution.py` will automatically attempt to visualize our solution.
