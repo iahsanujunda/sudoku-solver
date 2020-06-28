@@ -1,15 +1,16 @@
-
 from utils import *
-
+import numpy as np
+import copy
 
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
-square_units = [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')]
+square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')]
 unitlist = row_units + column_units + square_units
 
 # TODO: Update the unit list to add the new diagonal units
-unitlist = unitlist
-
+main_diagonal_units = [f'{rows[idx]}{cols[idx]}' for idx, val in enumerate(cols)]
+reversed_diagonal_units = [f'{rows[8 - idx]}{cols[idx]}' for idx, val in enumerate(cols)]
+unitlist = unitlist + [main_diagonal_units] + [reversed_diagonal_units]
 
 # Must be called after all units (including diagonals) are added to the unitlist
 units = extract_units(unitlist, boxes)
@@ -54,7 +55,25 @@ def naked_twins(values):
     https://github.com/udacity/artificial-intelligence/blob/master/Projects/1_Sudoku/pseudocode.md
     """
     # TODO: Implement this function!
-    raise NotImplementedError
+    # Populate twins in peers
+    twin_boxes = [
+        [box_a, box_b]
+        for box_a in values
+        for box_b in peers[box_a]
+        if values[box_a] == values[box_b]
+        and len(values[box_a]) == 2
+    ]
+
+    for twin_box in twin_boxes:
+        box_a_peers = peers[twin_box[0]]
+        box_b_peers = peers[twin_box[1]]
+        common_intersect = box_a_peers & box_b_peers
+        single_peer = [peer for peer in common_intersect if len(values[peer]) > 1]
+
+        for i in single_peer:
+            for discard in values[twin_box[0]]:
+                values = assign_value(values, i, values[i].replace(discard, ''))
+    return values
 
 
 def eliminate(values):
@@ -74,7 +93,10 @@ def eliminate(values):
         The values dictionary with the assigned values eliminated from peers
     """
     # TODO: Copy your code from the classroom to complete this function
-    raise NotImplementedError
+    found_keys = [k for k in values.keys() if len(values[k]) == 1]
+    digits = [values[box] for box in found_keys]
+
+    return values
 
 
 def only_choice(values):
@@ -98,7 +120,7 @@ def only_choice(values):
     You should be able to complete this function by copying your code from the classroom
     """
     # TODO: Copy your code from the classroom to complete this function
-    raise NotImplementedError
+    return values
 
 
 def reduce_puzzle(values):
@@ -116,7 +138,7 @@ def reduce_puzzle(values):
         no longer produces any changes, or False if the puzzle is unsolvable 
     """
     # TODO: Copy your code from the classroom and modify it to complete this function
-    raise NotImplementedError
+    return values
 
 
 def search(values):
@@ -170,6 +192,7 @@ if __name__ == "__main__":
 
     try:
         import PySudoku
+
         PySudoku.play(grid2values(diag_sudoku_grid), result, history)
 
     except SystemExit:
