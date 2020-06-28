@@ -94,7 +94,9 @@ def eliminate(values):
     """
     # TODO: Copy your code from the classroom to complete this function
     found_keys = [k for k in values.keys() if len(values[k]) == 1]
-    digits = [values[box] for box in found_keys]
+    for key in found_keys:
+        for peer in peers[key]:
+            values[peer] = values[peer].replace(values[key], '')
 
     return values
 
@@ -120,6 +122,11 @@ def only_choice(values):
     You should be able to complete this function by copying your code from the classroom
     """
     # TODO: Copy your code from the classroom to complete this function
+    for unit in unitlist:
+        for digit in cols:
+            dplaces = [key for key in unit if digit in values[key]]
+            if len(dplaces) == 1:
+                values[dplaces[0]] = digit
     return values
 
 
@@ -138,6 +145,20 @@ def reduce_puzzle(values):
         no longer produces any changes, or False if the puzzle is unsolvable 
     """
     # TODO: Copy your code from the classroom and modify it to complete this function
+    stalled = False
+    while not stalled:
+        solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
+
+        # strategies
+        values = eliminate(values)
+        values = only_choice(values)
+        values = naked_twins(values)
+
+        solved_values_after = len([box for box in values.keys() if len(values[box]) == 1])
+        stalled = solved_values_before == solved_values_after
+
+        if len([box for box in values.keys() if len(values[box]) == 0]):
+            return False
     return values
 
 
