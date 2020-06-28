@@ -42,7 +42,7 @@ We can create our own puzzle to be run by this agent. This program accepts argum
 ```bash
 usage: solver.py [options] puzzle_board
   options:
-    puzzle_board    a string representing a sudoku grid.
+    puzzle_board    a string representing a sudoku grid. Must be 81 characters long.
                     Ex. '.14.....5......2.........7..........3...4...7...6..4...4....8...........7.......3'
 ``` 
 
