@@ -61,7 +61,7 @@ def naked_twins(values):
         for box_a in values
         for box_b in peers[box_a]
         if values[box_a] == values[box_b]
-        and len(values[box_a]) == 2
+           and len(values[box_a]) == 2
     ]
 
     for twin_box in twin_boxes:
@@ -230,8 +230,7 @@ if __name__ == "__main__":
         import PySudoku
 
         PySudoku.play(grid2values(diag_sudoku_grid), result, history)
-
+    except ImportError:
+        print('We could not visualize your board due to a pygame issue. Not a problem! It is not a requirement.')
     except SystemExit:
         pass
-    except:
-        print('We could not visualize your board due to a pygame issue. Not a problem! It is not a requirement.')
