@@ -4,7 +4,7 @@ many additional test cases that you must also pass to complete the project. You 
 own additional test cases to cover any failed tests shown in the Project Assistant feedback.
 """
 import unittest
-import solution
+import solver
 
 
 class TestNakedTwins(unittest.TestCase):
@@ -38,7 +38,7 @@ class TestNakedTwins(unittest.TestCase):
          'F5': '8', 'E2': '3', 'F7': '35', 'F8': '9', 'D2': '1', 'H1': '4', 'H6': '17', 'H2': '9', 'H4': '17',
          'D3': '79', 'B4': '27', 'B5': '1', 'B6': '8', 'B7': '27', 'E9': '2', 'B1': '9', 'B2': '5', 'B3': '6',
          'D6': '279', 'D7': '34', 'D4': '237', 'D5': '347', 'B8': '3', 'B9': '4', 'D1': '5'}
-        ]
+    ]
 
     before_naked_twins_2 = {'A1': '23', 'A2': '4', 'A3': '7', 'A4': '6', 'A5': '8', 'A6': '5', 'A7': '23', 'A8': '9',
                             'A9': '1', 'B1': '6', 'B2': '9', 'B3': '8', 'B4': '4', 'B5': '37', 'B6': '1', 'B7': '237',
@@ -73,13 +73,12 @@ class TestNakedTwins(unittest.TestCase):
     ]
 
     def test_naked_twins(self):
-        self.assertTrue(solution.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
+        self.assertTrue(solver.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
                         "Your naked_twins function produced an unexpected board.")
 
     def test_naked_twins2(self):
-        self.assertTrue(solution.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
+        self.assertTrue(solver.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
                         "Your naked_twins function produced an unexpected board.")
-
 
 
 class TestDiagonalSudoku(unittest.TestCase):
@@ -97,7 +96,8 @@ class TestDiagonalSudoku(unittest.TestCase):
                           'D1': '5'}
 
     def test_solve(self):
-        self.assertEqual(solution.solve(self.diagonal_grid), self.solved_diag_sudoku)
+        self.assertEqual(solver.solve(self.diagonal_grid), self.solved_diag_sudoku)
+
 
 if __name__ == '__main__':
     unittest.main()

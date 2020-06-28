@@ -1,6 +1,4 @@
 from utils import *
-import numpy as np
-import copy
 
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
@@ -101,12 +99,7 @@ def only_choice(values):
     -------
     dict
         The values dictionary with all single-valued boxes assigned
-
-    Notes
-    -----
-    You should be able to complete this function by copying your code from the classroom
     """
-    # TODO: Copy your code from the classroom to complete this function
     for unit in unitlist:
         for digit in cols:
             dplaces = [key for key in unit if digit in values[key]]
@@ -129,7 +122,6 @@ def reduce_puzzle(values):
         The values dictionary after continued application of the constraint strategies
         no longer produces any changes, or False if the puzzle is unsolvable 
     """
-    # TODO: Copy your code from the classroom and modify it to complete this function
     stalled = False
     while not stalled:
         solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
@@ -160,11 +152,6 @@ def search(values):
     -------
     dict or False
         The values dictionary with all boxes assigned or False
-
-    Notes
-    -----
-    You should be able to complete this function by copying your code from the classroom
-    and extending it to call the naked twins strategy.
     """
     # TODO: Copy your code from the classroom to complete this function
     values = reduce_puzzle(values)

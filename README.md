@@ -32,7 +32,7 @@ python -m unittest -v
 If all checks are clear, the agent can be run from the CLI using the following command
 
 ```bash
-python solution.py
+python solver.py
 ```
 
 ## Strategy Guide
