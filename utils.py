@@ -134,6 +134,8 @@ def grid2values(grid):
             Values: The value in each box, e.g., '8'. If the box has no value,
             then the value will be '123456789'.
     """
+    assert len(grid) == 81, "Grid must have length of 81"
+
     sudoku_grid = {}
     for val, key in zip(grid, boxes):
         if val == '.':
