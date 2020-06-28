@@ -5,7 +5,7 @@
 <img src="./images/solved.png" height="400" width="350" alt="sudoku-solver" />
 </p>
 
-In this project, we developed Sudoku-solving agent to solve [_diagonal sudoku puzzles_](https://sudoku.cool/x-sudoku.php) and implement a constraint strategy called "naked twins". A diagonal Sudoku puzzle is identical to traditional Sudoku puzzles with the added constraint that the boxes on the two main diagonals of the board must also contain the digits 1-9 in each cell (just like the rows, columns, and 3x3 blocks).
+In this project, we developed Sudoku-solving agent to solve [_diagonal sudoku puzzles_](https://sudoku.cool/x-sudoku.php) and implement a constraint strategy called [naked twins](./pseudocode.md). A diagonal Sudoku puzzle is identical to traditional Sudoku puzzles with the added constraint that the boxes on the two main diagonals of the board must also contain the digits 1-9 in each cell (just like the rows, columns, and 3x3 blocks).
 
 The naked twins strategy says that if we have two or more unallocated boxes in a unit and there are only two digits that can go in those two boxes, then those two digits can be eliminated from the possible assignments of all other boxes in the same unit.
 
@@ -20,10 +20,10 @@ Everything needed to run this project has been exported as conda environment. In
 
 ```bash
 conda env create -f environment.yml     # import the conda environment
-conda activate aind                     # activates the environment
+conda activate aind                     # activates it
 ```
 
-Before running the agent, make sure that all checks are passed by running the test suite.
+Before running the agent, make sure that all checks passed by running the test suite.
 
 ```bash
 python -m unittest -v
@@ -37,20 +37,25 @@ python solution.py
 
 ## Strategy Guide
 
+### 1. Constraint Propagation
 
+We use several contraints to solve this puzzle,
 
+- elimination contraint
+When a box has been assigned a digit, then all peers of this box can't have the same digit.
 
-## Submission
+- only choice constraint
+When only one box in a unit allows a certain digit, then that box must be assigned that digit.
 
-To submit your code, run `udacity submit` from a terminal in the top-level directory of this project. You will be prompted for a username and password the first time the script is run. If you login using google or facebook, visit [this link](https://project-assistant.udacity.com/auth_tokens/jwt_login) for alternate login instructions.
+- naked twins contraint
+When two or more unallocated boxes in a unit has the same two digit option that can be assigned to them, then these two digits can be eliminated from the assignment of all other boxes in the same unit
 
-The Udacity-PA CLI tool is automatically installed with the AIND conda environment provided in the classroom, but you can also install it manually by running `pip install udacity-pa`. You can submit your code for scoring by running `udacity submit`. The project assistant server has a collection of unit tests that it will execute on your code, and it will provide feedback on any successes or failures. You must pass all test cases in the project assistant to pass the project.
+### 2. Depth-first search
 
-Once your project passes all test cases on the Project Assistant, submit the zip file created by the `udacity submit` command in the classroom to automatically receive credit for the project. NOTE: You will not receive personalized feedback for this project on submissions that pass all test cases, however, all other projects in the term do provide personalized feedback on both passing & failing submissions.
-
+Depth-first search is used when our agent is faced with two or more possible outcome. In this situation, we are going to execute each options one-by-one until we find the final solution or encounter an error. If we found several options that can solve the puzzle, depth-first search will pick the option that returns the solution earlier based on [depth-first strategy](https://en.wikipedia.org/wiki/Depth-first_search).
 
 ## Visualization
 
-**Note:** The `pygame` library is required to visualize your solution -- however, the `pygame` module can be troublesome to install and configure. It should be installed by default with the AIND conda environment, but it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml), or discuss among your peers in the slack group if you need help.
+**Note:** The `pygame` library is required to visualize your solution -- we have include it with the `aind` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
 
-Running `python solution.py` will automatically attempt to visualize your solution, but you mustuse the provided `assign_value` function (defined in `utils.py`) to track the puzzle solution progress for reconstruction during visuzalization.
+Running `python solution.py` will automatically attempt to visualize our solution.

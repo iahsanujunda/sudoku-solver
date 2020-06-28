@@ -5,12 +5,11 @@ import copy
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')]
-unitlist = row_units + column_units + square_units
 
 # TODO: Update the unit list to add the new diagonal units
 main_diagonal_units = [rows[idx] + cols[idx] for idx in range(0, 9)]
 reversed_diagonal_units = [rows[8 - idx] + cols[idx] for idx in range(0, 9)]
-unitlist = unitlist + [main_diagonal_units] + [reversed_diagonal_units]
+unitlist = row_units + column_units + square_units + [main_diagonal_units] + [reversed_diagonal_units]
 
 # Must be called after all units (including diagonals) are added to the unitlist
 units = extract_units(unitlist, boxes)
@@ -20,7 +19,7 @@ peers = extract_peers(units, boxes)
 def naked_twins(values):
     """Eliminate values using the naked twins strategy.
 
-    The naked twins strategy says that if you have two or more unallocated boxes
+    The naked twins strategy says that if we have two or more unallocated boxes
     in a unit and there are only two digits that can go in those two boxes, then
     those two digits can be eliminated from the possible assignments of all other
     boxes in the same unit.
@@ -35,20 +34,6 @@ def naked_twins(values):
     dict
         The values dictionary with the naked twins eliminated from peers
 
-    Notes
-    -----
-    Your solution can either process all pairs of naked twins from the input once,
-    or it can continue processing pairs of naked twins until there are no such
-    pairs remaining -- the project assistant test suite will accept either
-    convention. However, it will not accept code that does not process all pairs
-    of naked twins from the original input. (For example, if you start processing
-    pairs of twins and eliminate another pair of twins before the second pair
-    is processed then your code will fail the PA test suite.)
-
-    The first convention is preferred for consistency with the other strategies,
-    and because it is simpler (since the reduce_puzzle function already calls this
-    strategy repeatedly).
-
     See Also
     --------
     Pseudocode for this algorithm on github:
@@ -61,7 +46,7 @@ def naked_twins(values):
         for box_a in values
         for box_b in peers[box_a]
         if values[box_a] == values[box_b]
-           and len(values[box_a]) == 2
+        and len(values[box_a]) == 2
     ]
 
     for twin_box in twin_boxes:
@@ -184,9 +169,9 @@ def search(values):
     # TODO: Copy your code from the classroom to complete this function
     values = reduce_puzzle(values)
     if values is False:
-        return False  ## Failed earlier
+        return False  # Failed earlier
     if all(len(values[s]) == 1 for s in boxes):
-        return values  ## Solved!
+        return values  # Solved!
 
     n, s = min((len(values[s]), s) for s in boxes if len(values[s]) > 1)
 
