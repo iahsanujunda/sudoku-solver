@@ -35,6 +35,17 @@ If all checks are clear, the agent can be run from the CLI using the following c
 python solver.py
 ```
 
+### Running custom board puzzle
+
+We can create our own puzzle to be run by this agent. This program accepts argument for building custom puzzle.
+
+```bash
+usage: solver.py [options] puzzle_board
+  options:
+    puzzle_board    a string representing a sudoku grid.
+                    Ex. '.14.....5......2.........7..........3...4...7...6..4...4....8...........7.......3'
+``` 
+
 ## Strategy Guide
 
 ### 1. Constraint Propagation
