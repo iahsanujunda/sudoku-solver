@@ -1,4 +1,4 @@
-# Solve Sudoku with AI
+# AI Technique to solve Sudoku
 
 ## Synopsis
 

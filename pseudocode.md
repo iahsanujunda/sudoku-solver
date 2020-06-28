@@ -1,11 +1,11 @@
 
 ## Naked Twins
 
-The naked twins strategy says that if you have two or more unallocated boxes in a unit and there are only two digits that can go in those two boxes, then those two digits can be eliminated from the possible assignments of all other boxes in the same unit.
+The naked twins strategy says that if we have two or more unallocated boxes in a unit and there are only two digits that can go in those two boxes, then those two digits can be eliminated from the possible assignments of all other boxes in the same unit.
 
-This pseudocode is accurate, but it isn't very efficient.  You should discuss the other strategies with your peers to look for more efficient implementations. 
+This pseudocode is a very simplified form of the naked twins.
 
-Note: It is best to treat the input to this function as immutable. Mutating the state during execution can cause unexpected results during testing because mutating the input can erase pairs of naked twins before they're discovered. 
+Note: It is best to treat the input to this function as immutable. Mutating the state during execution can cause unexpected results during real run because mutating the input can erase pairs of naked twins before they're discovered. 
 
 ---
 **function** NakedTwins(_values_) **returns** a dict mapping from Sudoku box names to a list of feasible values  
