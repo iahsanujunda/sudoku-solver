@@ -6,7 +6,7 @@ import sys
 if __name__ == "__main__":
     diag_sudoku_grid = '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
 
-    if len(sys.argv) == 1:
+    if len(sys.argv) == 2:
         diag_sudoku_grid = str(sys.argv[1])
 
     display(grid2values(diag_sudoku_grid))
