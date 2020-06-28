@@ -182,7 +182,22 @@ def search(values):
     and extending it to call the naked twins strategy.
     """
     # TODO: Copy your code from the classroom to complete this function
-    raise NotImplementedError
+    values = reduce_puzzle(values)
+    if values is False:
+        return False  ## Failed earlier
+    if all(len(values[s]) == 1 for s in boxes):
+        return values  ## Solved!
+
+    n, s = min((len(values[s]), s) for s in boxes if len(values[s]) > 1)
+
+    # Uses recursion to solve each one of the resulting sudokus,
+    # and if one returns a value (not False), returns the answer!
+    for value in values[s]:
+        new_sudoku = values.copy()
+        new_sudoku[s] = value
+        attempt = search(new_sudoku)
+        if attempt:
+            return attempt
 
 
 def solve(grid):
