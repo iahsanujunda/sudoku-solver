@@ -1,9 +1,9 @@
 import sys, os
+from objects.SudokuSquare import SudokuSquare
+from utils.utils import *
+from objects.GameResources import *
 
 sys.path.append(os.path.join("objects"))
-from objects.SudokuSquare import SudokuSquare
-from utils import *
-from objects.GameResources import *
 
 
 def play(values, result, history):

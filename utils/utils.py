@@ -1,6 +1,5 @@
 from collections import defaultdict
 
-
 rows = 'ABCDEFGHI'
 cols = '123456789'
 boxes = [r + c for r in rows for c in cols]
@@ -90,9 +89,10 @@ def assign_value(values, box, value):
         history[values2grid(values)] = (prev, (box, value))
     return values
 
+
 def cross(A, B):
     """Cross product of elements in A and elements in B """
-    return [x+y for x in A for y in B]
+    return [x + y for x in A for y in B]
 
 
 def values2grid(values):
@@ -152,10 +152,10 @@ def display(values):
     ----------
         values(dict): The sudoku in dictionary form
     """
-    width = 1+max(len(values[s]) for s in boxes)
-    line = '+'.join(['-'*(width*3)]*3)
+    width = 1 + max(len(values[s]) for s in boxes)
+    line = '+'.join(['-' * (width * 3)] * 3)
     for r in rows:
-        print(''.join(values[r+c].center(width)+('|' if c in '36' else '')
+        print(''.join(values[r + c].center(width) + ('|' if c in '36' else '')
                       for c in cols))
         if r in 'CF':
             print(line)
@@ -195,7 +195,6 @@ column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')]
 main_diagonal_units = [rows[idx] + cols[idx] for idx in range(0, 9)]
 reversed_diagonal_units = [rows[8 - idx] + cols[idx] for idx in range(0, 9)]
-
 
 # Must be called after all units (including diagonals) are added to the unitlist
 unitlist = row_units + column_units + square_units + [main_diagonal_units] + [reversed_diagonal_units]

@@ -1,10 +1,5 @@
-"""This test suite includes a few basic test cases to verify your solution. However, passing these
-tests does not guarantee that your solution is correct. The Project Asssistant test suite contains
-many additional test cases that you must also pass to complete the project. You should write your
-own additional test cases to cover any failed tests shown in the Project Assistant feedback.
-"""
 import unittest
-import utils
+from utils import utils
 
 
 class TestNakedTwins(unittest.TestCase):

@@ -1,5 +1,8 @@
-from utils import *
+import random
+import string
 import sys
+
+from utils.utils import *
 
 # Declare units
 
@@ -8,6 +11,8 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 2:
         diag_sudoku_grid = str(sys.argv[1])
+    else:
+        diag_sudoku_grid = ''.join(random.choice(string.digits) for _ in range(81))
 
     display(grid2values(diag_sudoku_grid))
     result = solve(diag_sudoku_grid)
