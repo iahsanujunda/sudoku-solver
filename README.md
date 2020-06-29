@@ -66,7 +66,7 @@ We use several contraints to solve this puzzle,
 
 ### 2. Depth-first search
 
-Depth-first search is used when our agent is faced with two or more possible outcome. In this situation, we are going to execute each options one-by-one until we find the final solution or encounter an error. If we found several options that can solve the puzzle, depth-first search will pick the option that returns the solution earlier based on [depth-first strategy](https://en.wikipedia.org/wiki/Depth-first_search).
+[Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represents the option that occur when our sudoku puzzle can have two or more valid solution. Using depth-first, we pick one 'branch' of the tree that has minimum number of possible digit, then it will always prioritize traversing a branch until the end, or until a constraint error occured, before switching to another branch with second least possible digit. The agent will stop on finding the first 'edge' with a solution.
 
 ## Visualization
 
