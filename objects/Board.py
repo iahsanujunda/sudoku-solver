@@ -22,25 +22,7 @@ class Board:
         self._cols = '123456789'
         self._boxes = [r + c for r in self._rows for c in self._cols]
 
-    def display_board(self, values: dict) -> None:
-        """
-        Display the values as a 2-D grid.
-        
-        Parameters
-        ----------
-            values: dict
-                The sudoku in dictionary form
-        """
-        width = 1 + max(len(values[s]) for s in self._boxes)
-        line = '+'.join(['-' * (width * 3)] * 3)
-        for r in self._rows:
-            print(''.join(values[r + c].center(width) + ('|' if c in '36' else '')
-                          for c in self._cols))
-            if r in 'CF':
-                print(line)
-        print()
-
-    def get_puzzle_dict(self):
+    def _get_puzzle_dict(self) -> dict:
         """
 
         Returns
@@ -55,3 +37,35 @@ class Board:
             else:
                 sudoku_dict[key] = val
         return sudoku_dict
+
+    def display_board(self) -> None:
+        """
+        Display the values as a 2-D grid.
+
+        Parameters
+        ----------
+            values: dict
+                The sudoku in dictionary form
+        """
+        values = self._get_puzzle_dict()
+        width = 1 + max(len(values[s]) for s in self._boxes)
+        line = '+'.join(['-' * (width * 3)] * 3)
+        for r in self._rows:
+            print(''.join(values[r + c].center(width) + ('|' if c in '36' else '')
+                          for c in self._cols))
+            if r in 'CF':
+                print(line)
+        print()
+
+    def update_board_with_grid(self, grid: str) -> None:
+        assert len(grid) == 81, ValueError("Grid must be 81 char length")
+        self.puzzle = grid
+
+    def update_board_with_dict(self, values_dict: dict) -> None:
+        res = []
+        for r in self._rows:
+            for c in self._cols:
+                v = values_dict[r + c]
+                res.append(v if len(v) == 1 else '.')
+
+        self.puzzle = res
