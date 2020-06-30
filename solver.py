@@ -21,11 +21,10 @@ if __name__ == "__main__":
             '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
         ]
 
-        sudoku_puzzle = puzzle_choice[0]  # random.randrange(2)
+        sudoku_puzzle = puzzle_choice[random.randrange(4)]  # random.randrange(2)
 
     board = Board(sudoku_puzzle)
     board.display_board()
-    print(board.get_puzzle_dict())
 
     # run agent
     result = agent.solve(board.get_puzzle_dict())
@@ -33,7 +32,6 @@ if __name__ == "__main__":
     # update and display solved board
     board.update_board_with_dict(result)
     board.display_board()
-    print(board.get_puzzle_dict())
 
     try:
         import PySudoku
