@@ -96,6 +96,11 @@ class TestDiagonalSudoku(unittest.TestCase):
     def test_solve(self):
         self.assertEqual(agent.solve(self.board.get_puzzle_dict()), self.solved_diag_sudoku)
 
+    def test_invalid_diagonal(self):
+        invalid_grid = '4..5..6.2..........61..7..9...1...6315.......8.79.2......4...575..21.........32..'
+        invalid_board = Board(invalid_grid)
+        self.assertFalse(agent.solve(invalid_board.get_puzzle_dict()))
+
 
 if __name__ == '__main__':
     unittest.main()

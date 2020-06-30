@@ -1,5 +1,6 @@
 from utils.utils import boxes, rows, cols
 
+
 class Board:
     """
     Represents sudoku board
@@ -16,6 +17,7 @@ class Board:
     display_board(values=dist)
         Prints the animals name and what sound it makes
     """
+
     def __init__(self, puzzle):
         assert len(puzzle) == 81, ValueError("Puzzle must be 81 char length")
 
