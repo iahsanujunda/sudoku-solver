@@ -66,7 +66,7 @@ We use several contraints to solve this puzzle,
 
 ### 2. Depth-first search
 
-<img src="https://video.udacity-data.com/topher/2018/April/5ac4885f_dfs/dfs.gif" alt="sudoku-solver" />
+![depth-first](https://video.udacity-data.com/topher/2018/April/5ac4885f_dfs/dfs.gif)
 
 [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represents the option that occur when our sudoku puzzle can have two or more valid solution. Using depth-first, we pick one 'branch' of the tree that has minimum number of possible digit, then it will always prioritize traversing a branch until the end, or until a constraint error occured, before switching to another branch with second least possible digit. The agent will stop on finding the first 'edge' with a solution.
 
