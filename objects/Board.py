@@ -1,3 +1,5 @@
+from utils.utils import boxes, rows, cols
+
 class Board:
     """
     Represents sudoku board
@@ -18,11 +20,8 @@ class Board:
         assert len(puzzle) == 81, ValueError("Puzzle must be 81 char length")
 
         self.puzzle = puzzle
-        self._rows = 'ABCDEFGHI'
-        self._cols = '123456789'
-        self._boxes = [r + c for r in self._rows for c in self._cols]
 
-    def _get_puzzle_dict(self) -> dict:
+    def get_puzzle_dict(self) -> dict:
         """
 
         Returns
@@ -31,7 +30,7 @@ class Board:
                 Sudoku board in dict form
         """
         sudoku_dict = {}
-        for val, key in zip(self.puzzle, self._boxes):
+        for val, key in zip(self.puzzle, boxes):
             if val == '.':
                 sudoku_dict[key] = '123456789'
             else:
@@ -47,12 +46,12 @@ class Board:
             values: dict
                 The sudoku in dictionary form
         """
-        values = self._get_puzzle_dict()
-        width = 1 + max(len(values[s]) for s in self._boxes)
+        values = self.get_puzzle_dict()
+        width = 1 + max(len(values[s]) for s in boxes)
         line = '+'.join(['-' * (width * 3)] * 3)
-        for r in self._rows:
+        for r in rows:
             print(''.join(values[r + c].center(width) + ('|' if c in '36' else '')
-                          for c in self._cols))
+                          for c in cols))
             if r in 'CF':
                 print(line)
         print()
@@ -63,8 +62,8 @@ class Board:
 
     def update_board_with_dict(self, values_dict: dict) -> None:
         res = []
-        for r in self._rows:
-            for c in self._cols:
+        for r in rows:
+            for c in cols:
                 v = values_dict[r + c]
                 res.append(v if len(v) == 1 else '.')
 

@@ -30,7 +30,7 @@ class TestBoard(unittest.TestCase):
         self.assertRaises(AssertionError, Board, puzzle)
 
     def test_board_puzzle_dict(self):
-        self.assertEqual(self.board._get_puzzle_dict(), self.puzzle_dict)
+        self.assertEqual(self.board.get_puzzle_dict(), self.puzzle_dict)
 
     def test_update_board_1(self):
         # test update with invalid grid

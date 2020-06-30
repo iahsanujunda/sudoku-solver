@@ -1,5 +1,6 @@
 import unittest
-from utils import utils
+from utils import agent
+from objects.Board import Board
 
 
 class TestNakedTwins(unittest.TestCase):
@@ -68,11 +69,11 @@ class TestNakedTwins(unittest.TestCase):
     ]
 
     def test_naked_twins(self):
-        self.assertTrue(utils.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
+        self.assertTrue(agent.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
                         "Your naked_twins function produced an unexpected board.")
 
     def test_naked_twins2(self):
-        self.assertTrue(utils.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
+        self.assertTrue(agent.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
                         "Your naked_twins function produced an unexpected board.")
 
 
@@ -90,15 +91,10 @@ class TestDiagonalSudoku(unittest.TestCase):
                           'D8': '9', 'D9': '2', 'D6': '8', 'D7': '1', 'D4': '4', 'D5': '3', 'D2': '7', 'D3': '6',
                           'D1': '5'}
 
+    board = Board(diagonal_grid)
+
     def test_solve(self):
-        self.assertEqual(utils.solve(self.diagonal_grid), self.solved_diag_sudoku)
-
-
-class TestAgentExecution(unittest.TestCase):
-    diagonal_grid = '1............62....1....7...6..8...3...9...7...6..4...4....8....52...........3'
-
-    def test_grid_length(self):
-        self.assertRaises(AssertionError, utils.grid2values, self.diagonal_grid)
+        self.assertEqual(agent.solve(self.board.get_puzzle_dict()), self.solved_diag_sudoku)
 
 
 if __name__ == '__main__':

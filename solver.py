@@ -2,7 +2,8 @@ import random
 import string
 import sys
 
-from utils.utils import *
+from utils import agent
+from utils.utils import history
 from objects.Board import Board
 
 # Declare units
@@ -20,22 +21,26 @@ if __name__ == "__main__":
             '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
         ]
 
-        sudoku_puzzle = puzzle_choice[3]  # random.randrange(2)
+        sudoku_puzzle = puzzle_choice[0]  # random.randrange(2)
 
     board = Board(sudoku_puzzle)
     board.display_board()
+    print(board.get_puzzle_dict())
 
     # run agent
-    result = solve(sudoku_puzzle)
+    result = agent.solve(board.get_puzzle_dict())
 
     # update and display solved board
     board.update_board_with_dict(result)
     board.display_board()
+    print(board.get_puzzle_dict())
 
     try:
         import PySudoku
 
-        PySudoku.play(grid2values(sudoku_puzzle), result, history)
+        play_board = Board(sudoku_puzzle)
+
+        PySudoku.play(play_board.get_puzzle_dict(), result, history)
     except ImportError:
         print('We could not visualize your board due to a pygame issue. Not a problem! It is not a requirement.')
     except SystemExit:
