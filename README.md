@@ -37,7 +37,7 @@ python solver.py
 
 ### Running custom board puzzle
 
-We can create our own puzzle to be run by this agent. This program accepts argument for building custom puzzle.
+We can create our own puzzle to be run by this agent. This program accepts optional argument for building custom puzzle. Note that without this argument, the program will pick one of predefined board puzzle at random.
 
 ```bash
 usage: solver.py [options] puzzle_board
