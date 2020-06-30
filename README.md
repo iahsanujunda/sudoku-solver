@@ -20,7 +20,7 @@ Everything needed to run this project has been exported as conda environment. In
 
 ```bash
 conda env create -f environment.yml     # import the conda environment
-conda activate aind                     # activates it
+conda activate sudoku                   # activates it
 ```
 
 Before running the agent, make sure that all checks passed by running the test suite.
@@ -72,6 +72,6 @@ We use several contraints to solve this puzzle,
 
 ## Visualization
 
-**Note:** The `pygame` library is required to run visualization -- we have include it with the `aind` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
+**Note:** The `pygame` library is required to run visualization -- we have include it with the `sudoku` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
 
 Running `python solver.py` will automatically attempt to visualize our solution.
