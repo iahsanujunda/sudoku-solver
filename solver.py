@@ -33,9 +33,9 @@ if __name__ == "__main__":
     board.display_board()
 
     try:
-        import PySudokup
+        import PySudoku
 
-        PySudokup.play(grid2values(sudoku_puzzle), result, history)
+        PySudoku.play(grid2values(sudoku_puzzle), result, history)
     except ImportError:
         print('We could not visualize your board due to a pygame issue. Not a problem! It is not a requirement.')
     except SystemExit:
