@@ -21,12 +21,12 @@ if __name__ == "__main__":
     board.display_board()
 
     # run agent
-    result = agent.solve(board.get_puzzle_dict())
-    if result is False:
+    solution = agent.solve(board.get_puzzle_dict())
+    if not solution:
         sys.exit('Invalid diagonal puzzle!')
 
     # update and display solved board
-    board.update_board_with_dict(result)
+    board.update_board_with_dict(solution)
     board.display_board()
 
     try:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
         play_board = Board(sudoku_puzzle)
 
-        PySudoku.play(play_board.get_puzzle_dict(), result, history)
+        PySudoku.play(play_board.get_puzzle_dict(), solution, history)
     except ImportError:
         print('We could not visualize your board due to a pygame issue. Not a problem! It is not a requirement.')
     except SystemExit:
