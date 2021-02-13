@@ -68,10 +68,10 @@ We use several contraints to solve this puzzle,
 
 ![depth-first](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
 
-[Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represents the option that occur when our sudoku puzzle can have two or more valid solution. Using depth-first, we pick one 'branch' of the tree that has minimum number of possible digit, then it will always prioritize traversing a branch until the end, or until a constraint error occured, before switching to another branch with second least possible digit. The agent will stop on finding the first 'edge' with a solution.
+[Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represents the possible solutions to solve our sudoku puzzle. Using depth-first, we pick one 'branch' of the tree that has minimum number of steps, it will traverse this branch until it met the solution. If instead, the edge of the branch is met with constraint error, the agent will switch to branch second least possible steps. The agent will stop on finding the first 'edge' with a solution.
 
 ## Visualization
 
-**Note:** The `pygame` library is required to run visualization -- we have include it with the `sudoku` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems or versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
+**Note:** The `pygame` library is required to run visualization -- we have include it with the `sudoku` environment, however, the `pygame` module can be troublesome to install and configure, and it is not reliable across all operating systems and versions. Please refer to the pygame documentation [here](http://www.pygame.org/download.shtml) to troubleshoot pygame.
 
-Running `python solver.py` will automatically attempt to visualize our solution.
+When all requirement of pygame is met, running `python solver.py` will automatically attempt to visualize our solution. Otherwise, the agent will run without visualization.
