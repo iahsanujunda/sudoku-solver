@@ -68,7 +68,7 @@ We use several contraints to solve this puzzle,
 
 ![depth-first](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
 
-[Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represents the possible solutions to solve our sudoku puzzle. Using depth-first, upon encounter with multiple possible solutions, we are going to traverse the first 'branch' we find until exhaustion, i.e. either we find correct solution or all possibele constraints are violated. Upon contraint violation, we switch to second available branch and also traverse this branch until exhaustion. The agent will stop on finding the first 'edge' with a solution.
+[Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) is an algorithm to traverse a tree. In our case, the tree represent the possible solutions to solve our sudoku puzzle. Using depth-first, upon encounter with multiple possible solutions, we are going to traverse the first 'branch' we find until exhaustion, i.e. either we find correct solution or all possible constraints are violated. Upon contraint violation, we switch to second available branch and also traverse this branch until exhaustion. The agent will stop on finding the first 'edge' with a solution.
 
 One adversary to depth-first search is breadth-first search, where in case of multiple possible solutions, we are going to take one step into each branch we encounter until a solution is found.
 
